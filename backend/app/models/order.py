@@ -1,6 +1,5 @@
 import uuid
 from sqlalchemy import Column, String, Numeric, Integer, ForeignKey, DateTime, JSON, Enum as SQLEnum
-from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
 import enum
@@ -18,15 +17,15 @@ class OrderStatus(str, enum.Enum):
 class Order(Base):
     __tablename__ = "orders"
     
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    user_id = Column(UUID(as_uuid=True), ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
+    id = Column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
+    user_id = Column(String(36), ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
     order_number = Column(String, unique=True, nullable=False, index=True)
-    status = Column(SQLEnum(OrderStatus), default=OrderStatus.PENDING, nullable=False)
+    status = Column(String, default="pending", nullable=False)
     total_amount = Column(Numeric(10, 2), nullable=False)
-    shipping_address = Column(JSON, nullable=False)  # Address details
-    payment_id = Column(String, nullable=True)  # Stripe payment ID
-    created_at = Column(DateTime(timezone=True), server_default=func.now())
-    updated_at = Column(DateTime(timezone=True), onupdate=func.now())
+    shipping_address = Column(JSON, nullable=False)
+    payment_id = Column(String, nullable=True)
+    created_at = Column(DateTime, server_default=func.now())
+    updated_at = Column(DateTime, onupdate=func.now())
     
     # Relationships
     user = relationship("User", backref="orders")
@@ -39,12 +38,12 @@ class Order(Base):
 class OrderItem(Base):
     __tablename__ = "order_items"
     
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    order_id = Column(UUID(as_uuid=True), ForeignKey("orders.id", ondelete="CASCADE"), nullable=False)
-    product_id = Column(UUID(as_uuid=True), ForeignKey("products.id"), nullable=False)
+    id = Column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
+    order_id = Column(String(36), ForeignKey("orders.id", ondelete="CASCADE"), nullable=False)
+    product_id = Column(String(36), ForeignKey("products.id"), nullable=False)
     variant_id = Column(String, nullable=True)
     quantity = Column(Integer, nullable=False)
-    price_at_purchase = Column(Numeric(10, 2), nullable=False)  # Price snapshot
+    price_at_purchase = Column(Numeric(10, 2), nullable=False)
     
     # Relationships
     order = relationship("Order", back_populates="items")

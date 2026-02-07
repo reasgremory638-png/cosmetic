@@ -1,6 +1,5 @@
 from pydantic import BaseModel
 from typing import Optional, List, Any
-from uuid import UUID
 from decimal import Decimal
 from datetime import datetime
 from enum import Enum
@@ -25,8 +24,8 @@ class ShippingAddress(BaseModel):
 
 
 class OrderItemResponse(BaseModel):
-    id: UUID
-    product_id: UUID
+    id: str
+    product_id: str
     variant_id: Optional[str] = None
     quantity: int
     price_at_purchase: Decimal
@@ -40,14 +39,14 @@ class OrderCreate(BaseModel):
 
 
 class OrderResponse(BaseModel):
-    id: UUID
+    id: str
     order_number: str
-    status: OrderStatus
+    status: str
     total_amount: Decimal
     shipping_address: Any
-    items: List[OrderItemResponse]
+    items: List[OrderItemResponse] = []
     payment_id: Optional[str] = None
-    created_at: datetime
+    created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
     
     class Config:
@@ -55,4 +54,4 @@ class OrderResponse(BaseModel):
 
 
 class OrderStatusUpdate(BaseModel):
-    status: OrderStatus
+    status: str

@@ -1,6 +1,5 @@
 from pydantic import BaseModel
 from typing import Optional, List, Any
-from uuid import UUID
 from decimal import Decimal
 from datetime import datetime
 
@@ -41,8 +40,8 @@ class ProductUpdate(BaseModel):
 
 
 class ProductResponse(ProductBase):
-    id: UUID
-    created_at: datetime
+    id: str
+    created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
     
     class Config:

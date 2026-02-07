@@ -1,13 +1,11 @@
 from pydantic import BaseModel
 from typing import Optional, List
-from uuid import UUID
 from decimal import Decimal
 from datetime import datetime
-from app.schemas.product import ProductResponse
 
 
 class CartItemBase(BaseModel):
-    product_id: UUID
+    product_id: str
     variant_id: Optional[str] = None
     quantity: int = 1
 
@@ -21,12 +19,11 @@ class CartItemUpdate(BaseModel):
 
 
 class CartItemResponse(BaseModel):
-    id: UUID
-    product_id: UUID
-    product: ProductResponse
+    id: str
+    product_id: str
     variant_id: Optional[str] = None
     quantity: int
-    created_at: datetime
+    created_at: Optional[datetime] = None
     
     class Config:
         from_attributes = True
