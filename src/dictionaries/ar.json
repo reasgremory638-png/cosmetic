@@ -1,0 +1,157 @@
+{
+  "site": {
+    "name": "كوزماتك",
+    "tagline": "مستلزمات الجمال الفاخرة"
+  },
+  "nav": {
+    "home": "الرئيسية",
+    "shop": "المتجر",
+    "skincare": "العناية بالبشرة",
+    "makeup": "المكياج",
+    "haircare": "العناية بالشعر",
+    "fragrance": "العطور",
+    "bodycare": "العناية بالجسم",
+    "tools": "الأدوات والإكسسوارات",
+    "sets": "المجموعات",
+    "sale": "التخفيضات",
+    "about": "من نحن",
+    "contact": "تواصل معنا",
+    "faq": "الأسئلة الشائعة",
+    "search": "بحث",
+    "cart": "السلة",
+    "wishlist": "المفضلة",
+    "account": "حسابي"
+  },
+  "home": {
+    "hero": {
+      "title": "اكتشفي إشراقتك الطبيعية",
+      "subtitle": "مستحضرات تجميل فاخرة صُممت للجمال الواعي",
+      "cta": "تسوقي الآن"
+    },
+    "categories": {
+      "title": "تسوقي حسب الفئة",
+      "viewAll": "عرض الكل"
+    },
+    "bestSellers": {
+      "title": "الأكثر مبيعاً",
+      "subtitle": "منتجاتنا الأكثر شعبية"
+    },
+    "newArrivals": {
+      "title": "وصل حديثاً",
+      "subtitle": "إضافات جديدة لمجموعتنا"
+    },
+    "concerns": {
+      "title": "تسوقي حسب الاحتياج",
+      "subtitle": "جدي الحلول لاحتياجاتك"
+    },
+    "newsletter": {
+      "title": "ابقي على اطلاع",
+      "subtitle": "اشتركي لتلقي العروض الحصرية ونصائح الجمال",
+      "placeholder": "أدخلي بريدك الإلكتروني",
+      "button": "اشتراك"
+    }
+  },
+  "shop": {
+    "title": "جميع المنتجات",
+    "filters": "التصفية",
+    "sort": "ترتيب حسب",
+    "sortOptions": {
+      "newest": "الأحدث",
+      "priceLow": "السعر: من الأقل للأعلى",
+      "priceHigh": "السعر: من الأعلى للأقل",
+      "popular": "الأكثر شعبية"
+    },
+    "clearFilters": "مسح الكل",
+    "noProducts": "لا توجد منتجات",
+    "results": "منتج"
+  },
+  "product": {
+    "addToCart": "أضيفي إلى السلة",
+    "addToWishlist": "أضيفي إلى المفضلة",
+    "removeFromWishlist": "إزالة من المفضلة",
+    "inStock": "متوفر",
+    "outOfStock": "غير متوفر",
+    "lowStock": "متبقي {{count}} فقط",
+    "size": "الحجم",
+    "shade": "اللون",
+    "quantity": "الكمية",
+    "tabs": {
+      "benefits": "الفوائد",
+      "howToUse": "طريقة الاستخدام",
+      "ingredients": "المكونات",
+      "shipping": "الشحن والإرجاع"
+    },
+    "related": "قد يعجبك أيضاً",
+    "reviews": {
+      "title": "تقييمات العملاء",
+      "writeReview": "اكتبي تقييماً",
+      "noReviews": "كوني أول من يقيم هذا المنتج"
+    }
+  },
+  "cart": {
+    "title": "سلة التسوق",
+    "empty": "سلتك فارغة",
+    "continueShopping": "متابعة التسوق",
+    "subtotal": "المجموع الفرعي",
+    "shipping": "الشحن",
+    "tax": "الضريبة",
+    "total": "الإجمالي",
+    "checkout": "إتمام الشراء",
+    "remove": "إزالة",
+    "freeShipping": "شحن مجاني للطلبات فوق ٥٠ دولار"
+  },
+  "wishlist": {
+    "title": "قائمة المفضلة",
+    "empty": "قائمة المفضلة فارغة",
+    "addAllToCart": "إضافة الكل إلى السلة"
+  },
+  "checkout": {
+    "title": "إتمام الطلب",
+    "contact": "معلومات التواصل",
+    "shipping": "عنوان الشحن",
+    "payment": "طريقة الدفع",
+    "review": "مراجعة الطلب",
+    "placeOrder": "تأكيد الطلب",
+    "orderSummary": "ملخص الطلب"
+  },
+  "account": {
+    "title": "حسابي",
+    "orders": "سجل الطلبات",
+    "addresses": "العناوين",
+    "profile": "الملف الشخصي",
+    "logout": "تسجيل الخروج",
+    "noOrders": "لم تقومي بأي طلبات بعد"
+  },
+  "footer": {
+    "shop": "المتجر",
+    "help": "المساعدة",
+    "company": "الشركة",
+    "shippingPolicy": "سياسة الشحن",
+    "returnPolicy": "سياسة الإرجاع",
+    "privacy": "سياسة الخصوصية",
+    "terms": "الشروط والأحكام",
+    "copyright": "© ٢٠٢٤ كوزماتك. جميع الحقوق محفوظة."
+  },
+  "common": {
+    "loading": "جاري التحميل...",
+    "error": "حدث خطأ ما",
+    "tryAgain": "حاولي مرة أخرى",
+    "viewAll": "عرض الكل",
+    "learnMore": "اعرفي المزيد",
+    "close": "إغلاق",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "confirm": "تأكيد",
+    "apply": "تطبيق"
+  },
+  "filters": {
+    "skinType": "نوع البشرة",
+    "concern": "الاحتياج",
+    "brand": "العلامة التجارية",
+    "price": "نطاق السعر",
+    "category": "الفئة",
+    "crueltyFree": "خالي من التجارب على الحيوانات",
+    "vegan": "نباتي",
+    "halal": "حلال"
+  }
+}
