@@ -16,6 +16,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'),
   title: "Cosmatic | Premium Beauty Essentials",
   description: "Discover premium cosmetics crafted for conscious beauty. Shop skincare, makeup, haircare, fragrance and more.",
   keywords: ["cosmetics", "beauty", "skincare", "makeup", "haircare", "fragrance"],

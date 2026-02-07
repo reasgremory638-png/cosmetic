@@ -4,6 +4,7 @@ import { locales, getDirection, type Locale } from '@/lib/i18n/config';
 import { getDictionary } from '@/lib/i18n/dictionary';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { CartProvider } from '@/lib/context/CartContext';
 
 export async function generateStaticParams() {
   return locales.map((locale) => ({ lang: locale }));
@@ -14,6 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const isArabic = lang === 'ar';
   
   return {
+    metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'),
     title: isArabic ? 'كوزماتك | مستلزمات الجمال الفاخرة' : 'Cosmatic | Premium Beauty Essentials',
     description: isArabic 
       ? 'اكتشفي مستحضرات التجميل الفاخرة المصممة للجمال الواعي'
@@ -39,10 +41,12 @@ export default async function LocaleLayout({
   const direction = getDirection(locale);
   
   return (
-    <div dir={direction} className={locale === 'ar' ? 'font-arabic' : ''}>
-      <Header locale={locale} dict={dict} currentPath={`/${locale}`} />
-      <main>{children}</main>
-      <Footer locale={locale} dict={dict} />
-    </div>
+    <CartProvider>
+      <div dir={direction} className={locale === 'ar' ? 'font-arabic' : ''}>
+        <Header locale={locale} dict={dict} currentPath={`/${locale}`} />
+        <main>{children}</main>
+        <Footer locale={locale} dict={dict} />
+      </div>
+    </CartProvider>
   );
 }
