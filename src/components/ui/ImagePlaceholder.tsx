@@ -28,10 +28,10 @@ export function ImagePlaceholder({
     aspectRatio: aspectRatio,
   };
 
-  // Show placeholder if no src or if it's a local path (starts with /)
-  const shouldShowPlaceholder = !src || src.startsWith('/');
+  // Only show placeholder if no src
+  const shouldShowPlaceholder = !src;
 
-  if (!shouldShowPlaceholder && src.startsWith('http')) {
+  if (!shouldShowPlaceholder) {
     return (
       <div className={`relative ${className}`} style={{ aspectRatio }}>
         <Image

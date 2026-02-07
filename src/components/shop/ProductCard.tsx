@@ -1,9 +1,10 @@
 'use client';
-
+import { useState } from 'react';
 import Link from 'next/link';
 import type { Product } from '@/lib/types';
 import type { Locale } from '@/lib/i18n/config';
 import { ImagePlaceholder } from '@/components/ui/ImagePlaceholder';
+import { useCart } from '@/lib/context/CartContext';
 
 interface ProductCardProps {
   product: Product;
@@ -11,6 +12,9 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product, locale }: ProductCardProps) {
+  const { addItem } = useCart();
+  const [isAdded, setIsAdded] = useState(false);
+  
   const title = locale === 'ar' ? product.title_ar : product.title_en;
   const isOnSale = product.compareAtPrice && product.compareAtPrice > product.price;
   
@@ -43,10 +47,19 @@ export function ProductCard({ product, locale }: ProductCardProps) {
           {/* Quick Add Button - Shows on hover */}
         <div className="absolute inset-x-0 bottom-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
           <button 
-            className="w-full py-2 bg-white text-black text-sm font-medium uppercase tracking-wide hover:bg-black hover:text-white transition-colors duration-200"
+            className={`w-full py-2 ${isAdded ? 'bg-green-600' : 'bg-white'} ${isAdded ? 'text-white' : 'text-black'} text-sm font-medium uppercase tracking-wide hover:bg-black hover:text-white transition-colors duration-200`}
             aria-label={`Quick add ${title} to cart`}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              addItem(product);
+              setIsAdded(true);
+              setTimeout(() => setIsAdded(false), 2000);
+            }}
           >
-            {locale === 'ar' ? 'إضافة سريعة' : 'Quick Add'}
+            {isAdded 
+              ? (locale === 'ar' ? 'تمت الإضافة' : 'Added!') 
+              : (locale === 'ar' ? 'إضافة سريعة' : 'Quick Add')}
           </button>
         </div>
         </div>

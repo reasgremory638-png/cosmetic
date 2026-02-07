@@ -8,6 +8,7 @@ import type { Locale } from '@/lib/i18n/config';
 import type { Dictionary } from '@/lib/i18n/dictionary';
 import { products } from '@/lib/data/products';
 import { ProductCard } from '@/components/shop/ProductCard';
+import { useCart } from '@/lib/context/CartContext';
 
 interface ProductDetailClientProps {
   product: Product;
@@ -19,6 +20,9 @@ export function ProductDetailClient({ product, locale, dict }: ProductDetailClie
   const [selectedVariant, setSelectedVariant] = useState(product.variants?.[0]?.id);
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState<'benefits' | 'howToUse' | 'ingredients' | 'shipping'>('benefits');
+  const [isAdding, setIsAdding] = useState(false);
+  
+  const { addItem } = useCart();
   
   const title = locale === 'ar' ? product.title_ar : product.title_en;
   const description = locale === 'ar' ? product.description_ar : product.description_en;
@@ -182,8 +186,18 @@ export function ProductDetailClient({ product, locale, dict }: ProductDetailClie
                 +
               </button>
             </div>
-            <button className="flex-1 bg-black text-white py-3 font-medium uppercase tracking-wide hover:bg-gray-800 transition-colors" aria-label={`Add ${title} to cart`}>
-              {dict.product.addToCart}
+            <button 
+              className={`flex-1 ${isAdding ? 'bg-green-600' : 'bg-black'} text-white py-3 font-medium uppercase tracking-wide hover:bg-gray-800 transition-colors`} 
+              aria-label={`Add ${title} to cart`}
+              onClick={() => {
+                setIsAdding(true);
+                addItem(product, selectedVariant, quantity);
+                setTimeout(() => setIsAdding(false), 2000);
+              }}
+            >
+              {isAdding 
+                ? (locale === 'ar' ? 'تمت الإضافة' : 'Added to Cart!') 
+                : dict.product.addToCart}
             </button>
           </div>
           

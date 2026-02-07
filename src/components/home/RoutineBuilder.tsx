@@ -5,6 +5,7 @@ import Link from 'next/link';
 import type { Locale } from '@/lib/i18n/config';
 import type { Product } from '@/lib/types';
 import { ImagePlaceholder } from '@/components/ui/ImagePlaceholder';
+import { useCart } from '@/lib/context/CartContext';
 
 interface RoutineBuilderProps {
   locale: Locale;
@@ -15,6 +16,8 @@ type RoutineStep = 'cleanse' | 'treat' | 'moisturize';
 
 export function RoutineBuilder({ locale, products }: RoutineBuilderProps) {
   const [activeTab, setActiveTab] = useState<RoutineStep>('cleanse');
+  const { addItem } = useCart();
+  const [addedId, setAddedId] = useState<string | null>(null);
 
   const tabs: { id: RoutineStep; label_en: string; label_ar: string }[] = [
     { id: 'cleanse', label_en: 'Cleanse', label_ar: 'تنظيف' },
@@ -61,7 +64,7 @@ export function RoutineBuilder({ locale, products }: RoutineBuilderProps) {
             href={`/${locale}/product/${product.slug}`}
             className="routine-card group"
           >
-            <div className="mb-4 overflow-hidden rounded-3xl">
+            <div className="mb-4 overflow-hidden rounded-3xl relative">
               <ImagePlaceholder
                 src={product.images[0] || ''}
                 alt={locale === 'ar' ? product.title_ar : product.title_en}
@@ -87,8 +90,20 @@ export function RoutineBuilder({ locale, products }: RoutineBuilderProps) {
               <span className="font-semibold text-lg" style={{ color: 'var(--accent-1)' }}>
                 ${product.price}
               </span>
-              <button className="add-btn opacity-0 group-hover:opacity-100 transition-opacity">
-                {locale === 'ar' ? 'إضافة' : 'Add'}
+              <button 
+                className={`add-btn ${addedId === product.id ? 'bg-green-600 border-green-600 text-white' : 'opacity-0 group-hover:opacity-100'} transition-all`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  addItem(product);
+                  setAddedId(product.id);
+                  setTimeout(() => setAddedId(null), 2000);
+                }}
+              >
+                {addedId === product.id 
+                  ? (locale === 'ar' ? 'تم' : 'Done') 
+                  : (locale === 'ar' ? 'إضافة' : 'Add')
+                }
               </button>
             </div>
           </Link>
