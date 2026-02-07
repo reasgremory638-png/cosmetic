@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from typing import Optional, List
 from decimal import Decimal
 from datetime import datetime
@@ -19,14 +19,13 @@ class CartItemUpdate(BaseModel):
 
 
 class CartItemResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    
     id: str
     product_id: str
     variant_id: Optional[str] = None
     quantity: int
     created_at: Optional[datetime] = None
-    
-    class Config:
-        from_attributes = True
 
 
 class CartResponse(BaseModel):

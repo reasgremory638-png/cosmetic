@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from typing import Optional, List, Any
 from decimal import Decimal
 from datetime import datetime
@@ -40,12 +40,11 @@ class ProductUpdate(BaseModel):
 
 
 class ProductResponse(ProductBase):
+    model_config = ConfigDict(from_attributes=True)
+    
     id: str
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
-    
-    class Config:
-        from_attributes = True
 
 
 class ProductList(BaseModel):
